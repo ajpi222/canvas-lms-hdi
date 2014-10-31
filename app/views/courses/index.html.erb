@@ -1,0 +1,69 @@
+<% content_for :page_title, t('titles.courses', 'Courses') %>
+
+<% content_for :auto_discovery do %>
+  <% if @current_user %>
+    <%= auto_discovery_link_tag(:atom, feeds_user_format_path(@current_user.feed_code, :atom), {:title => t('titles.rss.course_announcements', "Course Announcements Atom Feed")}) %>
+  <% end %>
+<% end %>
+
+<% if show_user_create_course_button(@current_user) %>
+  <% content_for :right_side do %>
+    <div class="rs-margin-lr">
+      <button type="button"
+              id="start_new_course"
+              class="element_toggler btn button-sidebar-wide"
+              aria-controls="new_course_form"><%= t('start_new_course', 'Start a New Course') %></button>
+      <%= render :partial => 'shared/new_course_form' %>
+    </div>
+  <% end %>
+<% end %>
+
+<% jammit_css :context_list, :course_list %>
+<% js_bundle :course_list %>
+<% @favorite_course_ids = @current_user.courses_with_primary_enrollment(:favorite_courses).map(&:id) %>
+<% @show_star_column = true %>
+<% unless @current_enrollments.empty? %>
+  <h2><%= t('headings.my_courses', %{My Courses}) %></h2>
+  <table id="my_courses_table" class="table table-bordered current_enrollments course-list-table">
+    <% @current_enrollments.each do |enrollment| %>
+      <%= render :partial => "shared/current_enrollment", :object => enrollment %>
+    <% end %>
+  </table>
+<% end %>
+
+<% @show_star_column = false %>
+<% unless @current_user.current_groups.empty? %>
+  <h2><%= t('headings.my_groups', %{My Groups}) %></h2>
+  <table id="my_groups_table" class="table table-bordered current_groups course-list-table">
+    <% @current_user.current_groups.each do |group| %>
+      <% group_name = group.name %>
+      <tr>
+        <td>
+        <a href=<%= group_path(group) %>>
+        <span class="name ellipsis" title=<%= group_name %>>
+          <%= group_name %>
+        </span>
+        </a>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<% unless @past_enrollments.empty? %>
+  <h2><%= t('headings.past_enrollments', %{Past Enrollments}) %></h2>
+  <table id="past_enrollments_table" class="table table-bordered past_enrollments course-list-table">
+    <% @past_enrollments.each do |enrollment| %>
+      <%= render :partial => "shared/current_enrollment", :object => enrollment %>
+    <% end %>
+  </table>
+<% end %>
+
+<% unless @future_enrollments.empty? %>
+  <h2><%= t('headings.future_enrollments', 'Future Enrollments') %></h2>
+  <table id="future_enrollments_table" class="table table-bordered future_enrollments course-list-table">
+    <% @future_enrollments.each do |enrollment| %>
+      <%= render :partial => 'shared/current_enrollment', :object => enrollment %>
+    <% end %>
+  </table>
+<% end %>

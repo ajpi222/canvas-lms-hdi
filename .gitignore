@@ -1,0 +1,65 @@
+# What goes in this file:
+# * local canvas configuration (db, ymls, overrides, etc.)
+# * generated/cached stuff (docs, css, js, uploads, etc.)
+#
+# What does NOT go in this file
+# * editor-related stuff
+# * random scripts only used by you
+# * env-specific stuff (e.g. .DS_Store)
+# * pretty much any dotfile not already covered (e.g. .rvmrc)
+#
+# That's what .git/info/exclude and core.excludesfile are for :)
+
+.bundle/
+/.yardoc/
+/app/coffeescripts/ember/*/main.coffee
+/app/views/info/styleguide.html.erb
+/config/*.yml
+/config/build.js
+/config/environments/*-local.rb
+/config/locales/generated/
+/db/schema.rb
+/db/*.sqlite*
+/db/*sql
+/exports/
+Gemfile.lock
+Gemfile.lock2
+Gemfile.lock3
+Gemfile.lock4
+/log/
+/public/app/
+/public/assets/
+/public/doc/api/
+/public/javascripts/compiled/
+/public/javascripts/jst/
+/public/javascripts/translations/
+/public/optimized/
+/public/stylesheets_compiled/
+/config/RAILS4
+/spec/javascripts/runner.html
+/spec/javascripts/tests.js
+/spec/javascripts/compiled/
+/tmp/
+/vendor/plugins/rails_upgrade
+/node_modules
+/spec/javascripts/tests.js
+/spec/javascripts/requirejs_config.js
+
+# generated plugin stuff
+/app/coffeescripts/plugins/
+/app/stylesheets/plugins/
+/app/views/jst/plugins/
+/public/javascripts/plugins/
+/public/plugins/
+/spec/coffeescripts/plugins/
+/spec/plugins/
+
+# generate client app stuff
+/public/javascripts/client_apps/
+
+#remove this once we move jqeury into bower
+/public/javascripts/bower/jquery/
+
+[canvas-gems]
+/gems/*/coverage
+/gems/*/tmp

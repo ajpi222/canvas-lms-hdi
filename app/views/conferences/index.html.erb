@@ -1,0 +1,52 @@
+<% content_for :page_title do %>
+  <%= join_title t(:page_title, "Web Conferences"), @context.name %>
+<% end %>
+
+<% js_bundle(:conferences)  %>
+<% jammit_css(:conferences) %>
+
+<h1 class="screenreader-only"><%= t(:conference_header, 'Conferences')%></h1>
+
+<% if can_do(WebConference.new(:context => @context), @current_user, :create) %>
+  <header class="row-fluid">
+    <div class="span3 offset9 align-right padding-r">
+      <button type="button" class="btn btn-primary new-conference-btn">
+        <%= t(:new_conference, 'New Conference') %>
+      </button>
+    </div>
+  </header>
+<% end %>
+
+<div class="item-group-container item-box">
+
+  <div class="item-group-condensed">
+    <div class="ig-header">
+      <h2 class="ig-header-title">
+        <a class="element_toggler"
+           aria-controls="new-conference-list"
+           aria-expanded="true">
+          <i class="icon-mini-arrow-down auto_rotate"></i>
+          <%= t(:new_conferences, 'New Conferences') %>
+        </a>
+      </h2>
+    </div>
+    <div class="item-group-expandable" id="new-conference-list"></div>
+  </div>
+
+  <div class="item-group-condensed">
+    <div class="ig-header">
+      <h2 class="ig-header-title">
+        <a class="element_toggler"
+            aria-controls="concluded-conference-list"
+            aria-expanded="true">
+          <i class="icon-mini-arrow-down auto_rotate"></i>
+          <%= t(:concluded_conferences, 'Concluded Conferences') %>
+        </a>
+      </h2>
+    </div>
+    <div class="item-group-expandable" id="concluded-conference-list"></div>
+  </div>
+
+</div>
+
+<div id="add_conference_form"></div>

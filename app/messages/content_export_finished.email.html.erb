@@ -1,0 +1,9 @@
+<% define_content :link do %>
+  <%= HostUrl.protocol %>://<%= HostUrl.context_host(asset.context) %>/<%= asset.context.class.to_s.downcase.pluralize %>/<%= asset.context_id %>/content_exports
+<% end %>
+<% define_content :subject do %>
+  <%= t :subject, "Course Export Finished: %{course}", :course => asset.context.name %>
+<% end %>
+<p><%= t :body2, %{Your course export for *%{course}* has finished.}, :course => asset.context.name, :wrapper => '<em>\1</em>' %></p>
+
+<p><a href="<%= content :link %>"><%= t :link, "Click to view exports" %></a></p>
