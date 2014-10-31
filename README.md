@@ -1,6 +1,5 @@
-Canvas LMS
-======
-
+canvas-lms-hdi
+==============
 Canvas is a new, open-source LMS by Instructure Inc. It is released under the
 AGPLv3 license for use by anyone interested in learning more about or using
 learning management systems.
@@ -15,3 +14,5 @@ on our wiki.
 
  * [Quick Start](http://github.com/instructure/canvas-lms/wiki/Quick-Start)
  * [Production Start](http://github.com/instructure/canvas-lms/wiki/Production-Start)
+canvas-lms-hdi
+==============
